@@ -13,7 +13,7 @@
         <activity android:name=".ProductosActivity" />
         <activity android:name=".UbicacionActivity" />
         <activity android:name=".RecetasActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
