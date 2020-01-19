@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btn_ubicacion"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
@@ -21,14 +21,14 @@
             android:baselineAligned="false"
             android:text="Ubicación"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintEnd_toStartOf="@+id/btn_recetas"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.409" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_recetas"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="28dp"
@@ -40,21 +40,21 @@
             app:layout_constraintVertical_bias="0.409" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btn_productos"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:layout_marginLeft="28dp"
             android:text="Productos"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button4"
+            app:layout_constraintEnd_toStartOf="@+id/btn_adicional"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.631" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btn_adicional"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="28dp"
