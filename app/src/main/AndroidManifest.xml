@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdicionalActivity"></activity>
+        <activity android:name=".AnotherActivity"
+            android:parentActivityName=".RecetasActivity">
+        </activity>
+        <activity android:name=".AdicionalActivity" />
         <activity android:name=".ProductosActivity" />
         <activity android:name=".UbicacionActivity" />
         <activity android:name=".RecetasActivity" />
