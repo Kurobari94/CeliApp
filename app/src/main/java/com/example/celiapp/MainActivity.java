@@ -1,12 +1,15 @@
 package com.example.celiapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class MenuActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         View y = findViewById(R.id.btn_productos);
         y.setOnClickListener(this);
+
+
     }
 
     @Override
