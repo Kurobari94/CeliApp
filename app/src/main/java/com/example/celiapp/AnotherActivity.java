@@ -28,7 +28,7 @@ public class AnotherActivity extends AppCompatActivity {
 
         mTitleTv =  findViewById(R.id.title);
         mDescTv = findViewById(R.id.description);
-        mImageIv = findViewById(R.id.imageView);
+        // mImageIv = findViewById(R.id.imageView); Tratamos de que no se vea el icono en la pagina de las recetas
 
 
         // ahora obtenemos nuestra informacion que habiamos pueto en el intent
@@ -40,16 +40,14 @@ public class AnotherActivity extends AppCompatActivity {
         byte[] mBytes = getIntent().getByteArrayExtra("iImage");
 
         //ahora a decodificar la imagen, por que en la otra actividad lo convertimos en bytes
-        assert mBytes != null;
         Bitmap bitmap = BitmapFactory.decodeByteArray(mBytes,0, mBytes.length);
 
-        assert actionBar != null;
         actionBar.setTitle(mTitle); // el titulo que obtenemos de la anterior actividad que va a ser puesta en nuestra actionbar
 
         // ahora seteamos nuesta informacion en la vista
         mTitleTv.setText(mTitle);
         mDescTv.setText(mDescription);
-        mImageIv.setImageBitmap(bitmap);
+//        mImageIv.setImageBitmap(bitmap); Tratamos de no mostrar el icono en la pagina de las recetas
 
     }
 }

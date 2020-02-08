@@ -7,35 +7,35 @@
     android:background="#fff"
     tools:context=".AnotherActivity">
 
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+// tratamos de no mostrar el icono en la pagina de las recetas
+    <!--<ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:id="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:src="@mipmap/ic_launcher"
         android:contentDescription="@string/todo">
-    </ImageView>
+    </ImageView>-->
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:id="@+id/title"
-        android:text="@string/title"
+        android:text="Título"
         android:textSize="22sp"
         android:textColor="#000"
         android:textStyle="bold"
-        android:layout_below="@id/imageView"
-        android:layout_marginTop="5dp">
+        android:layout_centerHorizontal="true">
+        <!--android:layout_below="@id/imageView"  //Como no tenemos icono, no funciona esto
+        android:layout_marginTop="5dp"-->>
     </TextView>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/description"
+        android:text="Descripcion"
         android:id="@+id/description"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="#000"
         android:layout_below="@id/title"
         android:layout_marginTop="5dp">

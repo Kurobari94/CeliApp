@@ -11,7 +11,7 @@ public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickLis
 
     ImageView mImageView;
     TextView mTitle, mDes;
-    private ItemClickListener itemClickListener;
+    ItemClickListener itemClickListener;
 
 
     MyHolder(@NonNull View itemView) {
@@ -19,7 +19,7 @@ public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickLis
 
         this.mImageView = itemView.findViewById(R.id.imageIv);
         this.mTitle = itemView.findViewById(R.id.titleTv);
-        this.mDes = itemView.findViewById(R.id.descriptionTv);
+        //this.mDes = itemView.findViewById(R.id.descriptionTv); tratamos de que no aparezca la descripcion en el row
 
         itemView.setOnClickListener(this);
     }
@@ -31,7 +31,7 @@ public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickLis
 
     }
 
-    void setItemClickListener(ItemClickListener ic){
+    public void setItemClickListener(ItemClickListener ic){
 
         this.itemClickListener = ic;
 
