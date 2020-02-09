@@ -1,18 +1,22 @@
 package com.example.celiapp;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.view.Display;
+import com.example.celiapp.video.VideoAdapter;
+import com.example.celiapp.video.YouTubeVideos;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class RecetasActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
     MyAdapter myAdapter;
+    Vector<YouTubeVideos> youtubeVideos = new Vector<>();
 
 
     @Override
@@ -54,8 +58,8 @@ public class RecetasActivity extends AppCompatActivity {
     models.add(m);
 
     m = new Model();
-    m.setTitulo("Receta 02");
-    m.setDescripcion("Descripcion de la receta");
+    m.setTitulo("Pizza y galletas para celiacos (muy facil)");
+    m.setDescripcion("youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/HktOrU68MBY\" frameborder=\"0\" allowfullscreen></iframe>"""))); //Tratamos de poner un video de Youtube, en lugar de la descripcion
     m.setImg(R.drawable.player);
     models.add(m);
 
@@ -142,6 +146,11 @@ public class RecetasActivity extends AppCompatActivity {
     m.setDescripcion("Descripcion de la receta");
     m.setImg(R.drawable.player);
     models.add(m);
+
+    //Tratamos de que funcione el video puesto mas arriba
+        VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
+        recyclerView.setAdapter(videoAdapter);
+
 
     return models;
 
