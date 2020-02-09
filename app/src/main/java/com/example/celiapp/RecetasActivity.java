@@ -151,7 +151,6 @@ public class RecetasActivity extends AppCompatActivity {
         VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
         recyclerView.setAdapter(videoAdapter);
 
-
     return models;
 
     }
