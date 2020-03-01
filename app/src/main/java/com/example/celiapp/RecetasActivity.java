@@ -1,22 +1,23 @@
 package com.example.celiapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.celiapp.video.VideoAdapter;
-import com.example.celiapp.video.YouTubeVideos;
+import com.example.celiapp.video.WebViewActivity;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
-public class RecetasActivity extends AppCompatActivity {
+public class RecetasActivity extends AppCompatActivity implements DatosRecyclerViewAdapter.ItemSeleccionado{
 
-    RecyclerView mRecyclerView;
-    MyAdapter myAdapter;
-    Vector<YouTubeVideos> youtubeVideos = new Vector<>();
+    RecyclerView rvLista;
+    //MyAdapter myAdapter;
+    RecyclerView.Adapter adaptador;
+    RecyclerView.LayoutManager layoutManager;
+    ArrayList<Model> ldrv;
 
 
     @Override
@@ -24,135 +25,66 @@ public class RecetasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recetas);
 
-        mRecyclerView = findViewById(R.id.recyclerView);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        rvLista = findViewById(R.id.rvLista);
+        rvLista.setHasFixedSize(true);
 
-        myAdapter = new MyAdapter(this, getMyList());
-        mRecyclerView.setAdapter(myAdapter);
+        layoutManager = new LinearLayoutManager(this);
+        rvLista.setLayoutManager(layoutManager);
 
+        //myAdapter = new MyAdapter(this, getMyList());
+        //mRecyclerView.setAdapter(myAdapter);
+
+
+        ldrv = new ArrayList<Model>();
+        ldrv.add(new Model("Hamburguesas de lentejas, arroz y berenjena"," " +
+                "    200 g de lenteja pardina \n" +
+                "    150 g de arroz integral (remojado) \n" +
+                "    3 cebolletas \n" +
+                "    6 tomates deshidratados en aceite \n" +
+                "    4 dientes de ajo \n" +
+                "    1 berenjena \n" +
+                "    1 cucharada de tomillo \n" +
+                "    25 g de pasas \n" +
+                "    125 g de harina de garbanzo \n" +
+                "    aceite de oliva virgen extra \n" +
+                "    sal \n" +
+                "    perejil \n" +
+                "Elaboración \n" +
+                "Pon las lentejas en una cazuela y cúbrelas con agua. Corta los tallos de las cebolletas y pícalos en daditos. Sazona y cocina las lentejas durante 20 minutos aproximadamente. Escúrrelas bien y ponlas en un bol.\n" +
+                "\n" +
+                "Pon agua a calentar en la olla rápida. Agrega el arroz y cuatro partes de agua. Sazona. Coloca la tapa y cuécelo durante 8 minutos a partir de que comience a salir el vapor. Escurre y resérvalo en otro bol.\n" +
+                "\n" +
+                "Pela la cebolleta y 2 dientes de ajo, pícalos en daditos y ponlos a rehogar en una sartén con un chorrito de aceite. Pela la berenjena, córtala en daditos y añádelos a la sartén. Rehoga conjuntamente y sazona. Pica las pasas e incorpóralas. Agrega también el tomillo. Pasa las verduras a un bol grande.\n" +
+                "\n" +
+                "Añade el arroz, las lentejas y 100 gramos de harina de garbanzo (reserva el resto). Mezcla los ingredientes hasta conseguir una masa compacta. Tapa la masa con film de cocina (de manera que este en contacto con la masa) y déjala reposando en el frigorífico durante 1 hora.\n" +
+                "\n" +
+                "Pela y pica los otros 2 dientes de ajo y las otras 2 cebolletas. Pica un poco los tomates deshidratados y pon todo a rehogar en una cazuela con un chorrito de aceite. Cuando las verduras estén un poco rehogadas, añade un vaso de agua, sazona y cocina los ingredientes durante unos 10 minutos aproximadamente. Tritura los ingredientes hasta conseguir una salsa espesa.\n" +
+                "\n" +
+                "Forma las hamburguesas y colócalas en una fuente espolvoreada con el resto de la harina de garbanzos. Calienta una plancha, agrega un chorrito de aceite y cocina las hamburguesas a la plancha durante 3 minutos por cada lado.\n" +
+                "\n" +
+                "Sirve las hamburguesas, espolvoréalas con perejil picado y acompáñalas con la salsa. Adorna con unas hojas de perejil. "));
+        ldrv.add(new Model("Receta 1","Gran descripción de la Receta 1!!!"));
+        ldrv.add(new Model("Receta 1","Gran descripción de la Receta 1!!!"));
+        ldrv.add(new Model("Pizza y galletas para celiacos","<iframe width=\"400\" height=\"300\" " +
+                "src=\"https://www.youtube.com/embed/HktOrU68MBY\" " +
+                "frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" " +
+                "allowfullscreen></iframe>"));
+
+        adaptador = new DatosRecyclerViewAdapter(this,ldrv);
+
+        rvLista.setAdapter(adaptador);
     }
 
-    private ArrayList<Model> getMyList(){
-
-    ArrayList<Model> models = new ArrayList<>();
-
-    Model m = new Model();
-    m.setTitulo("Sopa de Verduras Y Trigo Sarraceno");
-    m.setDescripcion("    2 cebolletas\n" +
-            "    2 zanahorias\n" +
-            "    2 puerros\n" +
-            "    100 gr de champiñones\n" +
-            "    100 gr de trigo sarraceno\n" +
-            "    30 gr de lentejas rojas\n" +
-            "    aceite de oliva virgen extra\n" +
-            "    sal\n" +
-            "    6-8 hojas de menta\n" +
-            "    perejil\n" +
-            "\n" +
-            "Elaboración:\n" +
-            "Para hacer el caldo, pon a cocer en una cazuela con agua las partes verdes de las cebolletas, de las zanahorias y de los puerros (bien limpios). Sazona, añade unas ramas de perejil y cuécelos durante 15 minutos. Cuela y reserva el caldo.\n" +
-            "Pela y pica las cebolletas, los puerros y las zanahoria finamente. Pon a pochar en una cazuela con un chorrito de aceite. Lava los champiñones, córtalos en cuartos y láminalos. Añade y rehógalos. Agrega las lentejas rojas, enjuaga el trigo sarraceno y añádelo.\n" +
-            "Cubre con el caldo y cuece todo durante unos 20 minutos a fuego suave. Pon a punto de sal. Desgrasa con ayuda de un cacillo.\n" +
-            "Sirve la sopa de verduras y trigo sarraceno. Pica las hojas de menta y salpica la sopa. ");
-    m.setImg(R.drawable.recipe);
-    models.add(m);
-
-    m = new Model();
-    m.setTitulo("Pizza y galletas para celiacos (muy facil)");
-    m.setDescripcion("youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/HktOrU68MBY\" frameborder=\"0\" allowfullscreen></iframe>"""))); //Tratamos de poner un video de Youtube, en lugar de la descripcion
-    m.setImg(R.drawable.player);
-    models.add(m);
-
-    m = new Model();
-    m.setTitulo("Hamburguesas de verduras con salsa de tomate");
-    m.setDescripcion("    1/2 coliflor\n" +
-            "    1/2 calabacín\n" +
-            "    1 cebolla\n" +
-            "    2 zanahorias\n" +
-            "    8 ajos frescos\n" +
-            "    1 patata\n" +
-            "    50 g de copos de avena (finos)\n" +
-            "    50 g de harina de garbanzo\n" +
-            "    1 cucharada de orégano\n" +
-            "    250 ml de salsa de tomate\n" +
-            "    aceite de oliva virgen extra\n" +
-            "    sal\n" +
-            "    perejil\n" +
-            "\n" +
-            "Elaboración:\n" +
-            "Cuece la patata en una cazuela con agua durante 30 minutos. Pela y pásala por el pasapurés. Reserva.\n" +
-            "Pela la cebolla, córtala en daditos y ponla a pochar en una sartén con un poco de aceite. Pica los ajos frescos en cilindros y añádelos. Sazona y rehoga bien.\n" +
-            "Limpia la coliflor, rállala y añádela a la sartén. Pica el calabacín en daditos muy pequeños y agrégalos. Pela las zanahorias, ralla e incorpóralas. Pocha el conjunto durante 30-35 minutos a fuego suave.\n" +
-            "Coloca todo en un bol y añade el puré de patata. Añade los copos de avena, la harina de garbanzo y el orégano. Pon a punto de sal, mezcla y deja reposar durante 5 minutos.\n" +
-            "Divide la masa en 8 porciones y dales forma de hamburguesa.\n" +
-            "Pon la plancha a calentar con un chorrito de aceite de aceite. Agrega las hamburguesas y cocínalas a la plancha durante 3 minutos por cada lado.\n" +
-            "Sirve y acompáñalas con la salsa de tomate caliente. Decora con una ramita de perejil.\n" +
-            "\n" +
-            "Consejo:\n" +
-            "También se pueden picar las verduras con un procesador de alimentos.");
-    m.setImg(R.drawable.recipe);
-    models.add(m);
-
-    m = new Model();
-    m.setTitulo("Receta 04");
-    m.setDescripcion("Descripcion de la receta");
-    m.setImg(R.drawable.player);
-    models.add(m);
-
-    m = new Model();
-    m.setTitulo("Receta 05");
-    m.setDescripcion("Descripcion de la receta");
-    m.setImg(R.drawable.recipe);
-    models.add(m);
-
-    m = new Model();
-    m.setTitulo("Receta 06");
-    m.setDescripcion("Descripcion de la receta");
-    m.setImg(R.drawable.player);
-    models.add(m);
-
-    m = new Model();
-    m.setTitulo("Receta 07");
-    m.setDescripcion("Descripcion de la receta");
-    m.setImg(R.drawable.recipe);
-    models.add(m);
-
-    m = new Model();
-    m.setTitulo("Receta 08");
-    m.setDescripcion("Descripcion de la receta");
-    m.setImg(R.drawable.player);
-    models.add(m);
-
-    m = new Model();
-    m.setTitulo("Receta 09");
-    m.setDescripcion("Descripcion de la receta");
-    m.setImg(R.drawable.recipe);
-    models.add(m);
-
-    m = new Model();
-    m.setTitulo("Receta 10");
-    m.setDescripcion("Descripcion de la receta");
-    m.setImg(R.drawable.player);
-    models.add(m);
-
-    m = new Model();
-    m.setTitulo("Receta 11");
-    m.setDescripcion("Descripcion de la receta");
-    m.setImg(R.drawable.recipe);
-    models.add(m);
-
-    m = new Model();
-    m.setTitulo("Receta 12");
-    m.setDescripcion("Descripcion de la receta");
-    m.setImg(R.drawable.player);
-    models.add(m);
-
-    //Tratamos de que funcione el video puesto mas arriba
-        VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
-        recyclerView.setAdapter(videoAdapter);
 
 
-    return models;
+    @Override
+    public void onItemSeleccionado(int index) {
+        String contenido = "<h3>" + ldrv.get(index).getTitulo() + "</h3>"
+                + "<p>" + ldrv.get(index).getDescripcion() + "</p>";
 
+        Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
+        intent.putExtra("contenido",contenido);
+        startActivity(intent);
     }
+
 }

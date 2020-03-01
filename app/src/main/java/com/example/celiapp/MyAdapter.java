@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +17,89 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
+
+// Nueva Implementacion
+
+public class    MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+
+    private ArrayList<Model> ldrv;
+
+    ItemSeleccionado actividad;
+
+    public interface ItemSeleccionado{
+        void onItemSeleccionado(int index);
+    }
+
+    public MyAdapter(Context context, ArrayList<Model> lista){
+        ldrv = lista;
+        actividad = (ItemSeleccionado) context;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView ivIcono;
+        TextView tvTitulo;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            ivIcono = itemView.findViewById(R.id.imageIv);
+            tvTitulo = itemView.findViewById(R.id.titleTv);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    actividad.onItemSeleccionado(ldrv.indexOf((Model) v.getTag()));
+                }
+            });
+        }
+    }
+
+    @NonNull
+    @Override
+    public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false);
+
+        return new ViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+    }
+
+  //  @Override
+    public void onBindViewHolder(@NonNull DatosRecyclerViewAdapter.ViewHolder holder, int position) {
+
+        holder.itemView.setTag(ldrv.get(position));
+        holder.tvTitulo.setText(ldrv.get(position).getTitulo());
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return ldrv.size();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Antigua Implementación
+
+/*
 public class MyAdapter extends RecyclerView.Adapter<MyHolder>{
 
         Context c;
@@ -69,6 +155,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder>{
 
             }
         });
+*/
 
 
 
@@ -126,10 +213,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder>{
             }
         });*/
 
-    }
+ //   }
+/*
 
     @Override
     public int getItemCount() {
         return models.size();
     }
 }
+*/
